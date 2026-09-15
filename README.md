@@ -11,8 +11,9 @@ This project implements an adaptive routing strategy for Mobile Ad-hoc Networks 
 
 ## Repository Structure
 
-- `ml_controller.py`: The machine Learning controller script that processes network states and predicts routing parameters.
-- `dsetgen1.cc` / `dset.cc`: C++ simulation scripts built for the **ns-3** network simulator to evaluate the proposed protocol.
+- `ml_controller.py`: The main execution script that drives the machine learning controller. Running this file yields the final evaluation results.
+- `dsetgen1.cc`: C++ simulation script for ns-3 used to generate the dataset.
+- `dset.cc`: The reference ns-3 simulation file used by the ML controller during execution.
 - `knn_optimal_models.pkl`: Pre-trained K-Nearest Neighbors (KNN) model used for decision making.
 - `manet_scaler.pkl`: The dataset scaler used alongside the KNN model.
 
@@ -27,10 +28,14 @@ This project implements an adaptive routing strategy for Mobile Ad-hoc Networks 
 ## Usage
 
 1. Copy the `dsetgen1.cc` and `dset.cc` files into the `scratch/` directory of your local `ns-3` installation.
-2. Ensure the `.pkl` files and `ml_controller.py` are accessible by the Python environment running the simulations.
-3. Run the simulation through the ns-3 build system:
+2. Ensure the `.pkl` files and `ml_controller.py` are accessible by the Python environment.
+3. **Dataset Generation:** To generate the underlying dataset, run the following through the ns-3 build system:
    ```bash
    ./ns3 run scratch/dsetgen1
+   ```
+4. **Final Results:** To run the adaptive routing simulation and get the final results, execute the ML controller directly:
+   ```bash
+   python3 ml_controller.py
    ```
 
 ## License
